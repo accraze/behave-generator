@@ -9,3 +9,11 @@ Feature: Generator
     Then I should have a features directory
     And I should have a features/steps directory
     And I should have a features/environment.py file
+
+  Scenario: User enters behave-generator with browser command into terminal
+    Given I am in an empty directory
+    When I type the command "behave-generator --browser=remote"
+    Then I should have a features directory
+    And I should have a features/steps directory
+    And I should have a features/browser.py file
+    And I should have a features/environment.py file
