@@ -18,6 +18,7 @@ import click
 from behave_generator.generator import BehaveGenerator
 
 @click.command()
-def main():
-  g = BehaveGenerator()
+@click.option('--browser', default=None, help='browser to run tests')
+def main(browser):
+  g = BehaveGenerator(browser)
   g.build()
