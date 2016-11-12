@@ -9,7 +9,12 @@ def step_impl(context):
 @when(u'I type the command "{command}"')
 def step_impl(context, command):
   from subprocess import call
-  call([command])
+  if '--browser' in command:
+    cmd = command.split(' ')[0]
+    opt = command.split(' ')[1]
+    call([cmd, opt])
+  else:
+    call([command])
 
 @then(u'I should have a {dir_name} directory')
 def step_impl(context, dir_name):
