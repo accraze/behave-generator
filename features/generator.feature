@@ -1,7 +1,7 @@
 Feature: Generator
   As a developer
   I want a tool that will setup behave bdd in my python projects
-  So that I write BDD tests faster.
+  So that I can write BDD tests faster.
 
   Scenario: User enters "behave-generator" command into terminal
     Given I am in an empty directory
