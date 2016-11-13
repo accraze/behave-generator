@@ -66,11 +66,32 @@ class BehaveGenerator(object):
     Create an environment.py file
     and place it inside of feature dir
     """
-    # with open("templates/environment_base.py") as env_template:
-    #   with open("features/environment.py", 'w') as env_file:
-    #     for line in env_template:
-    #       env_file.write(line)
+    status = {'previous_line': '', 'line':''}
     this_dir, this_filename = os.path.split(__file__)
     DATA_PATH = os.path.join(this_dir, self.environ_template)
-    from subprocess import call
-    call(["cp", DATA_PATH, self.environ_file])
+    with open(DATA_PATH) as env_template:
+      with open(self.environ_file, 'w') as env_file:
+        if self.browser:
+          env_file.write('from browser import Browser\n')
+        for line in env_template:
+          status['line'] = line
+          if self.browser:
+            self._write_browser_env(status, env_file)
+          else:
+            env_file.write(line)
+          status['previous_line'] = line
+
+  def _write_browser_env(self, status, writefile):
+    """
+    Handle defining and cllsing browser statements
+    in features/environment.py
+    """
+    if 'pass' in status['line']:
+      if 'before_all' in status['previous_line']:
+        browser_line = '    context.browser = Browser()\n'
+        writefile.write(browser_line)
+      elif 'after_all' in status['previous_line']:
+        browser_line = '    context.browser.close()'
+        writefile.write(browser_line)
+    else:
+      writefile.write(status['line'])
