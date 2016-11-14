@@ -49,9 +49,17 @@ class BehaveGenerator(object):
     """
     if "# insert browser here" in line:
       browser_cfg = {
-          "chrome"  : "  driver = webdriver.Chrome()\n",
-          "firefox" : "  driver = webdriver.Firefox()\n",
-          "remote"  : "  driver = webdriver.Remote()\n"
+          "android"     : "  driver = webdriver.Android()\n",
+          "blackberry"  : "  driver = webdriver.Blackberry()\n",
+          "chrome"      : "  driver = webdriver.Chrome()\n",
+          "edge"        : "  driver = webdriver.Edge()\n",
+          "firefox"     : "  driver = webdriver.Firefox()\n",
+          "ie"          : "  driver = webdriver.Ie()\n",
+          "opera"       : "  driver = webdrive.Opera()\n",
+          "phantomjs"   : "  driver = webdrive.PhantomJS()\n",
+          "opera"       : "  driver = webdrive.Opera()\n",
+          "remote"      : "  driver = webdriver.Remote()\n",
+          "safari"      : "  driver = webdriver.Safari()\n"
       }
       browser_line = browser_cfg.get(self.browser)
       if not browser_line:
