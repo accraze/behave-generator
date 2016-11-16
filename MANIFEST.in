@@ -2,7 +2,7 @@ graft docs
 graft examples
 graft src
 graft ci
-graft tests
+graft features
 
 include .bumpversion.cfg
 include .coveragerc
@@ -15,7 +15,7 @@ include CHANGELOG.rst
 include CONTRIBUTING.rst
 include LICENSE
 include README.rst
-
+include README.md
 include tox.ini .travis.yml appveyor.yml
 
 global-exclude *.py[cod] __pycache__ *.so *.dylib
