@@ -1,5 +1,6 @@
 from selenium import webdriver
 
+
 class Browser(object):
 
   base_url = 'http://localhost:8080'

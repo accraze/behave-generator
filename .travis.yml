@@ -7,12 +7,12 @@ env:
     - SEGFAULT_SIGNALS=all
   matrix:
     - TOXENV=check
-    - TOXENV=docs
+    # - TOXENV=docs
 
-    - TOXENV=py27,coveralls,codecov
-    - TOXENV=py33,coveralls,codecov
-    - TOXENV=py34,coveralls,codecov
-    - TOXENV=py35,coveralls,codecov
+    - TOXENV=py27
+    - TOXENV=py33
+    - TOXENV=py34
+    - TOXENV=py35
 #    - TOXENV=pypy,coveralls,codecov
 before_install:
   - python --version
