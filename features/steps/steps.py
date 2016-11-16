@@ -1,4 +1,5 @@
 import os
+from behave_generator.generator import BehaveGenerator
 
 @given(u'I am in an empty directory')
 def step_impl(context):
@@ -24,3 +25,15 @@ def step_impl(context, dir_name):
 def step_impl(context, file_name):
   assert os.path.exists(os.path.join(os.getcwd(), file_name))
 
+@when(u'I run behave-generator --browser={browser}')
+def step_impl(context, browser):
+  g = BehaveGenerator(browser)
+  try:
+    g.build()
+  except Exception, e:
+    context.exc = e
+
+@then(u'it throws an exception with message "{msg}"')
+def step_impl(context, msg):
+  assert isinstance(context.exc, Exception)
+  assert context.exc.message == msg

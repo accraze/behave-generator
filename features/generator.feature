@@ -17,3 +17,8 @@ Feature: Generator
     And I should have a features/steps directory
     And I should have a features/browser.py file
     And I should have a features/environment.py file
+
+  Scenario: User enters behave-generator with unsupported browser
+    Given I am in an empty directory
+    When I run behave-generator --browser=foo
+    Then it throws an exception with message "Invalid Browser Name"
